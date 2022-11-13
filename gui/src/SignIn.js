@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SignUp from './SignUp';
+import {Link as RouterLink} from 'react-router-dom';
+import { green, teal} from '@mui/material/colors';
 
 function Copyright(props) {
   return (
@@ -27,7 +30,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignUp(props) {
+export default function SignIn(props) {
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [showError, setShowError] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('Default error message');
@@ -82,21 +85,10 @@ export default function SignUp(props) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Cadastre-se
+            Entrar
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="fullname"
-                  required
-                  fullWidth
-                  id="fullname"
-                  label="Nome completo"
-                  autoFocus
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -118,17 +110,6 @@ export default function SignUp(props) {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password2"
-                  label="Confirmação de senha"
-                  type="password"
-                  id="password2"
-                  autoComplete="new-password"
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -136,13 +117,13 @@ export default function SignUp(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Cadastrar
+              Entrar
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Já tem uma conta? Entrar
-                </Link>
+                  <RouterLink to="/cadastro" variant="body2">
+                    Não tem uma conta? Cadastre-se
+                  </RouterLink>
               </Grid>
             </Grid>
             <Grid container justifyContent="center">

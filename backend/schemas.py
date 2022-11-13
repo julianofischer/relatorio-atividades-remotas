@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, Field, EmailStr, validator
 from datetime import datetime
 from typing import Optional
 
@@ -7,7 +7,7 @@ class UserSchema(BaseModel):
     id: Optional[int]
     password: str
     password2: str
-    full_name: str
+    full_name: str = Field(max_length=100, min_length=2)
     email: EmailStr
     supervisor: Optional[int]
     is_supervisor: Optional[bool]
@@ -29,20 +29,35 @@ class UserSchema(BaseModel):
 
 
 class ReportSchema(BaseModel):
-    id: int
+    id: int | None
     ref_month: datetime
     user_id: int
+    approval_requested: bool | None
+    date_approval_requested: datetime | None
+    approved: bool | None
+    date_approved: datetime | None
+    approver: int | None
 
     class Config:
         orm_mode = True
 
 
 class ReportItemSchema(BaseModel):
-    id: int
+    id: Optional[int]
     report_id: int
     date: datetime
-    init_hour: str
-    end_hour: str
+    init_hour: str = Field(max_length=5, min_length=5)
+    end_hour: str = Field(max_length=5, min_length=5)
+
+    @validator("init_hour", "end_hour")
+    @classmethod
+    def validate_hour_string(cls, v):
+        splitted = v.split(":")
+        if len(splitted) != 2:
+            raise ValueError("Hora inválida")
+        if not splitted[0].isdigit() or not splitted[1].isdigit():
+            raise ValueError("Hora inválida")
+        return v
 
     class Config:
         orm_mode = True

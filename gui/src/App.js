@@ -1,15 +1,51 @@
 import logo from './logo.svg';
 import './App.css';
 import SignUp from './SignUp';
+import ReportView from './ReportView';
 import ListUsers from './ListUsers';
 import EditUser from './EditUser';
 import MenuAppBar from './MenuAppBar';
+import SignIn from './SignIn';
+import { createTheme } from '@mui/material/styles';
+import { green, teal} from '@mui/material/colors';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: teal[500],
+    },
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <MenuAppBar/>
-    </div>
+    <Router>
+      <div className="App">
+        <MenuAppBar theme={theme}/>
+      </div>
+      
+      <Switch>
+        <Route path="/login">
+          <SignIn theme={theme}/>
+        </Route>
+        <Route path="/cadastro">
+          <SignUp theme={theme}/>
+        </Route>
+        <Route path="/relatorio">
+          <ReportView theme={theme}/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

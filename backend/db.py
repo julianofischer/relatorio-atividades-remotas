@@ -38,12 +38,20 @@ class Report(Base):
     id = Column(Integer, primary_key=True)
     ref_month = Column(Date)
     user_id = Column(Integer, ForeignKey("users.id"))
+    approved = Column(Boolean, default=False)
+    date_approved = Column(Date, default=None)
+    approver = Column(Integer, ForeignKey("users.id"), default=None)
+    approval_requested = Column(Boolean, default=False)
+    date_approval_requested = Column(Date, default=None)
 
     def to_dict(self):
         return {
             "id": self.id,
             "ref_month": self.ref_month,
             "user_id": self.user_id,
+            "approved": self.approved,
+            "date_approved": self.date_approved,
+            "approver": self.approver,
         }
 
 
@@ -51,8 +59,8 @@ class ReportItem(Base):
     __tablename__ = "report_items"
 
     id = Column(Integer, primary_key=True)
-    report_id = Column(Integer, ForeignKey("reports.id"))
-    date = Column(Date)
+    report_id = Column(Integer, ForeignKey("reports.id"), nullable=False)
+    date = Column(Date)  # yyyy-mm-dd
     init_hour = Column(String(5))  # 00:00
     end_hour = Column(String(5))  # 00:00
 
