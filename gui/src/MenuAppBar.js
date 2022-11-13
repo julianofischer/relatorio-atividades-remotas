@@ -25,6 +25,7 @@ export default function MenuAppBar(props) {
         <Router>
           <AppBar position="static">
             <Toolbar>
+              <RouterLink to="/">
               <IconButton
                 size="large"
                 edge="start"
@@ -34,6 +35,7 @@ export default function MenuAppBar(props) {
               >
                 <HomeIcon />
               </IconButton>
+              </RouterLink>
 
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Relatório de Atividades Remotas

@@ -15,20 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignUp from './SignUp';
 import {Link as RouterLink} from 'react-router-dom';
-import { green, teal} from '@mui/material/colors';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://github.com/julianofischer">
-        @julianofischer
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 export default function SignIn(props) {
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -136,7 +123,6 @@ export default function SignIn(props) {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
