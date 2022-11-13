@@ -9,8 +9,9 @@ import SignIn from "./SignIn";
 import { createTheme } from "@mui/material/styles";
 import { green, teal } from "@mui/material/colors";
 import { Typography } from "@mui/material";
+import Link from "@mui/material/Link";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
